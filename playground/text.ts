@@ -1,0 +1,437 @@
+import { parseMarkdown } from "comark";
+import seo from "../src/index.js"
+
+const tree = await parseMarkdown('# Le guide complet du développement web moderne en 2026\n' +
+    '\n' +
+    'Le développement web moderne ne consiste plus simplement à créer\n' +
+    'quelques pages HTML accompagnées d\'une feuille de style. Les\n' +
+    'applications actuelles combinent souvent plusieurs technologies pour\n' +
+    'gérer l\'interface utilisateur, les données, l\'authentification, les\n' +
+    'performances et le déploiement.\n' +
+    '\n' +
+    'Pour construire une application robuste, il est important de comprendre\n' +
+    'les différentes couches qui composent une architecture web moderne.\n' +
+    '\n' +
+    'Ce guide présente les principaux concepts à connaître ainsi que les\n' +
+    'technologies couramment utilisées par les développeurs.\n' +
+    '\n' +
+    '![Un développeur travaillant sur une application\n' +
+    'web](https://images.example.com/developer.jpg)\n' +
+    '\n' +
+    '## Les fondamentaux du Web\n' +
+    '\n' +
+    'Le Web repose historiquement sur trois technologies principales :\n' +
+    '\n' +
+    '-   HTML\n' +
+    '-   CSS\n' +
+    '-   JavaScript\n' +
+    '\n' +
+    'Chacune possède un rôle différent dans le fonctionnement d\'une page.\n' +
+    '\n' +
+    '### HTML et la structure des documents\n' +
+    '\n' +
+    'HTML permet de définir la structure et la sémantique d\'une page.\n' +
+    '\n' +
+    'Un document correctement structuré utilise des éléments adaptés au\n' +
+    'contenu qu\'il représente.\n' +
+    '\n' +
+    '### CSS et la présentation\n' +
+    '\n' +
+    'CSS contrôle l\'apparence d\'un document.\n' +
+    '\n' +
+    'Les développeurs peuvent notamment modifier :\n' +
+    '\n' +
+    '-   les couleurs ;\n' +
+    '-   les espacements ;\n' +
+    '-   les polices ;\n' +
+    '-   les dimensions ;\n' +
+    '-   les animations ;\n' +
+    '-   le positionnement ;\n' +
+    '-   les layouts.\n' +
+    '\n' +
+    'Les fonctionnalités modernes comme **Flexbox** et **CSS Grid**\n' +
+    'permettent de construire des interfaces complexes sans utiliser les\n' +
+    'anciennes techniques basées sur `float`.\n' +
+    '\n' +
+    '![Exemple d\'une interface utilisant CSS\n' +
+    'Grid](https://images.example.com/css-grid.png)\n' +
+    '\n' +
+    '### JavaScript et les interactions\n' +
+    '\n' +
+    'JavaScript permet d\'ajouter des comportements dynamiques aux pages.\n' +
+    '\n' +
+    '``` js\n' +
+    'const message = "Hello World"\n' +
+    '\n' +
+    'console.log(message)\n' +
+    '```\n' +
+    '\n' +
+    '## Les frameworks frontend\n' +
+    '\n' +
+    'Lorsque les interfaces deviennent complexes, organiser l\'ensemble du\n' +
+    'JavaScript devient rapidement difficile.\n' +
+    '\n' +
+    '### React\n' +
+    '\n' +
+    '[React](https://react.dev/) est une bibliothèque développée initialement\n' +
+    'par Meta.\n' +
+    '\n' +
+    'React repose sur une approche basée sur les composants.\n' +
+    '\n' +
+    '### Vue\n' +
+    '\n' +
+    '[Vue](https://vuejs.org/) est un framework progressif permettant\n' +
+    'également de construire des interfaces à partir de composants.\n' +
+    '\n' +
+    'Pour construire des applications plus importantes, Vue est souvent\n' +
+    'utilisé avec [Nuxt](https://nuxt.com/).\n' +
+    '\n' +
+    '### Angular\n' +
+    '\n' +
+    '[Angular](https://angular.dev/) est un framework beaucoup plus complet.\n' +
+    '\n' +
+    '## Construire une interface accessible\n' +
+    '\n' +
+    'L\'accessibilité est une partie importante du développement frontend.\n' +
+    '\n' +
+    '### Utiliser du HTML sémantique\n' +
+    '\n' +
+    'Une erreur courante consiste à construire toute une interface uniquement\n' +
+    'avec des éléments `div`.\n' +
+    '\n' +
+    '``` html\n' +
+    '<button>\n' +
+    '  Envoyer\n' +
+    '</button>\n' +
+    '```\n' +
+    '\n' +
+    '### Les images\n' +
+    '\n' +
+    'Les images importantes doivent posséder une description alternative.\n' +
+    '\n' +
+    '![Architecture simplifiée d\'une application\n' +
+    'web](https://images.example.com/architecture.png)\n' +
+    '\n' +
+    '![](https://images.example.com/background-decoration.png)\n' +
+    '\n' +
+    '![](https://images.example.com/product-dashboard.png)\n' +
+    '\n' +
+    '## Le développement backend\n' +
+    '\n' +
+    'Une application moderne possède généralement une partie backend.\n' +
+    '\n' +
+    'Le backend peut notamment gérer :\n' +
+    '\n' +
+    '-   l\'authentification ;\n' +
+    '-   les permissions ;\n' +
+    '-   les données ;\n' +
+    '-   les paiements ;\n' +
+    '-   les emails ;\n' +
+    '-   les tâches asynchrones ;\n' +
+    '-   les fichiers.\n' +
+    '\n' +
+    '### Les technologies backend\n' +
+    '\n' +
+    '1.  PHP avec Laravel ;\n' +
+    '2.  JavaScript ou TypeScript avec Node.js ;\n' +
+    '3.  C# avec ASP.NET Core ;\n' +
+    '4.  Java avec Spring Boot ;\n' +
+    '5.  Python avec Django ou FastAPI ;\n' +
+    '6.  Go ;\n' +
+    '7.  Rust.\n' +
+    '\n' +
+    '## Les API\n' +
+    '\n' +
+    'Les applications communiquent généralement grâce à des API.\n' +
+    '\n' +
+    '### REST\n' +
+    '\n' +
+    '``` text\n' +
+    'GET /api/users\n' +
+    'GET /api/users/42\n' +
+    'POST /api/users\n' +
+    'PATCH /api/users/42\n' +
+    'DELETE /api/users/42\n' +
+    '```\n' +
+    '\n' +
+    '``` json\n' +
+    '{\n' +
+    '  "id": 42,\n' +
+    '  "name": "Alice",\n' +
+    '  "email": "alice@example.com"\n' +
+    '}\n' +
+    '```\n' +
+    '\n' +
+    '### GraphQL\n' +
+    '\n' +
+    '[GraphQL](https://graphql.org/) propose une autre approche.\n' +
+    '\n' +
+    '### gRPC\n' +
+    '\n' +
+    'gRPC est particulièrement utilisé pour les communications entre\n' +
+    'services.\n' +
+    '\n' +
+    '## Les bases de données\n' +
+    '\n' +
+    '### Les bases relationnelles\n' +
+    '\n' +
+    '-   PostgreSQL ;\n' +
+    '-   MySQL ;\n' +
+    '-   MariaDB ;\n' +
+    '-   SQLite.\n' +
+    '\n' +
+    '[PostgreSQL](https://www.postgresql.org/) est particulièrement populaire\n' +
+    'pour les applications web modernes.\n' +
+    '\n' +
+    '### Les bases NoSQL\n' +
+    '\n' +
+    'MongoDB utilise par exemple des documents.\n' +
+    '\n' +
+    'Redis utilise principalement un modèle clé-valeur et est fréquemment\n' +
+    'utilisé pour le cache.\n' +
+    '\n' +
+    '### Les bases analytiques\n' +
+    '\n' +
+    '[ClickHouse](https://clickhouse.com/) est une base orientée colonnes\n' +
+    'particulièrement adaptée aux workloads analytiques.\n' +
+    '\n' +
+    '## Les performances\n' +
+    '\n' +
+    'Les performances ont un impact direct sur l\'expérience utilisateur.\n' +
+    '\n' +
+    '### Réduire les ressources\n' +
+    '\n' +
+    '-   code splitting ;\n' +
+    '-   lazy loading ;\n' +
+    '-   tree shaking ;\n' +
+    '-   compression ;\n' +
+    '-   cache ;\n' +
+    '-   CDN.\n' +
+    '\n' +
+    '### Optimiser les images\n' +
+    '\n' +
+    '![Comparaison entre plusieurs formats\n' +
+    'd\'image](https://images.example.com/image-formats.avif)\n' +
+    '\n' +
+    '### Utiliser le cache\n' +
+    '\n' +
+    '1.  navigateur ;\n' +
+    '2.  CDN ;\n' +
+    '3.  serveur ;\n' +
+    '4.  application ;\n' +
+    '5.  base de données.\n' +
+    '\n' +
+    '## Le référencement naturel\n' +
+    '\n' +
+    'Le SEO permet d\'améliorer la visibilité d\'un site dans les moteurs de\n' +
+    'recherche.\n' +
+    '\n' +
+    '### Le titre de la page\n' +
+    '\n' +
+    'Chaque page importante doit posséder un titre descriptif.\n' +
+    '\n' +
+    '### La meta description\n' +
+    '\n' +
+    'La description fournit un résumé du contenu.\n' +
+    '\n' +
+    '### La structure des titres\n' +
+    '\n' +
+    'Une page doit posséder une hiérarchie cohérente.\n' +
+    '\n' +
+    '#### Exemple de sous-section\n' +
+    '\n' +
+    'Cette partie se trouve logiquement sous une section de niveau supérieur.\n' +
+    '\n' +
+    '##### Une section encore plus profonde\n' +
+    '\n' +
+    'Il est possible d\'utiliser plusieurs niveaux lorsque la structure du\n' +
+    'contenu le nécessite.\n' +
+    '\n' +
+    '### Les liens internes\n' +
+    '\n' +
+    '[Découvrir nos services](/services)\n' +
+    '\n' +
+    '[Consulter notre page de contact](/contact)\n' +
+    '\n' +
+    '[Lire notre guide sur les performances](/blog/performance-web)\n' +
+    '\n' +
+    '### Les liens externes\n' +
+    '\n' +
+    'Consultez la [documentation MDN](https://developer.mozilla.org/).\n' +
+    '\n' +
+    '[Documentation inexistante](https://example.invalid/documentation)\n' +
+    '\n' +
+    '## L\'architecture d\'une application moderne\n' +
+    '\n' +
+    '``` text\n' +
+    'Utilisateur\n' +
+    '    |\n' +
+    '    v\n' +
+    'CDN\n' +
+    '    |\n' +
+    '    v\n' +
+    'Frontend\n' +
+    '    |\n' +
+    '    v\n' +
+    'API\n' +
+    '    |\n' +
+    '    +--------> Redis\n' +
+    '    |\n' +
+    '    +--------> PostgreSQL\n' +
+    '    |\n' +
+    '    +--------> Object Storage\n' +
+    '    |\n' +
+    '    +--------> Queue\n' +
+    '                  |\n' +
+    '                  v\n' +
+    '               Workers\n' +
+    '```\n' +
+    '\n' +
+    '## Le déploiement\n' +
+    '\n' +
+    'Une fois l\'application développée, elle doit être déployée sur une\n' +
+    'infrastructure accessible depuis Internet.\n' +
+    '\n' +
+    '### Les plateformes cloud\n' +
+    '\n' +
+    'Elles peuvent automatiquement gérer :\n' +
+    '\n' +
+    '-   les builds ;\n' +
+    '-   les certificats HTTPS ;\n' +
+    '-   les domaines ;\n' +
+    '-   les déploiements continus ;\n' +
+    '-   certaines fonctions serveur.\n' +
+    '\n' +
+    '### Les VPS\n' +
+    '\n' +
+    'Un serveur privé virtuel offre davantage de contrôle.\n' +
+    '\n' +
+    '## Docker\n' +
+    '\n' +
+    'Docker permet d\'exécuter une application dans des conteneurs.\n' +
+    '\n' +
+    '``` yaml\n' +
+    'services:\n' +
+    '  app:\n' +
+    '    build: .\n' +
+    '\n' +
+    '  postgres:\n' +
+    '    image: postgres:17\n' +
+    '\n' +
+    '  redis:\n' +
+    '    image: redis:7\n' +
+    '\n' +
+    '  worker:\n' +
+    '    build: .\n' +
+    '```\n' +
+    '\n' +
+    '## La sécurité\n' +
+    '\n' +
+    '### Authentification\n' +
+    '\n' +
+    'Les mots de passe ne doivent jamais être enregistrés directement en\n' +
+    'clair.\n' +
+    '\n' +
+    '### Autorisation\n' +
+    '\n' +
+    'Être authentifié ne signifie pas automatiquement avoir accès à toutes\n' +
+    'les ressources.\n' +
+    '\n' +
+    '### Validation des données\n' +
+    '\n' +
+    'Les données provenant d\'un utilisateur doivent toujours être considérées\n' +
+    'comme non fiables.\n' +
+    '\n' +
+    '## Tests\n' +
+    '\n' +
+    '### Tests unitaires\n' +
+    '\n' +
+    'Les tests unitaires vérifient généralement une petite unité de logique.\n' +
+    '\n' +
+    '### Tests d\'intégration\n' +
+    '\n' +
+    'Les tests d\'intégration vérifient le fonctionnement de plusieurs\n' +
+    'composants ensemble.\n' +
+    '\n' +
+    '### Tests end-to-end\n' +
+    '\n' +
+    '1.  ouvrir la page de connexion ;\n' +
+    '2.  saisir un email ;\n' +
+    '3.  saisir un mot de passe ;\n' +
+    '4.  cliquer sur le bouton de connexion ;\n' +
+    '5.  vérifier que le dashboard apparaît.\n' +
+    '\n' +
+    '## Monitoring et observabilité\n' +
+    '\n' +
+    'Plusieurs informations peuvent être surveillées :\n' +
+    '\n' +
+    '-   utilisation CPU ;\n' +
+    '-   mémoire ;\n' +
+    '-   temps de réponse ;\n' +
+    '-   taux d\'erreur ;\n' +
+    '-   requêtes par seconde ;\n' +
+    '-   jobs en attente ;\n' +
+    '-   disponibilité des services.\n' +
+    '\n' +
+    '## Une architecture doit rester proportionnée\n' +
+    '\n' +
+    '> La meilleure architecture n\'est pas celle qui utilise le plus de\n' +
+    '> technologies, mais celle qui répond correctement aux contraintes du\n' +
+    '> projet.\n' +
+    '\n' +
+    '###### Choisir ses technologies\n' +
+    '\n' +
+    '  -----------------------------------------------------------------------\n' +
+    '  Critère                             Question\n' +
+    '  ----------------------------------- -----------------------------------\n' +
+    '  Performance                         Cette technologie répond-elle aux\n' +
+    '                                      besoins réels ?\n' +
+    '\n' +
+    '  Écosystème                          Existe-t-il suffisamment de\n' +
+    '                                      bibliothèques ?\n' +
+    '\n' +
+    '  Recrutement                         Peut-on trouver facilement des\n' +
+    '                                      développeurs ?\n' +
+    '\n' +
+    '  Maintenance                         Le projet sera-t-il maintenable\n' +
+    '                                      dans plusieurs années ?\n' +
+    '\n' +
+    '  Documentation                       La documentation est-elle\n' +
+    '                                      suffisamment complète ?\n' +
+    '\n' +
+    '  Sécurité                            Les mises à jour sont-elles\n' +
+    '                                      régulières ?\n' +
+    '  -----------------------------------------------------------------------\n' +
+    '\n' +
+    '# Conclusion\n' +
+    '\n' +
+    'Le développement web moderne couvre un domaine extrêmement large.\n' +
+    '\n' +
+    'Un développeur n\'a pas besoin de maîtriser immédiatement toutes les\n' +
+    'technologies existantes. Il est généralement plus important de\n' +
+    'comprendre les concepts fondamentaux derrière ces outils.\n' +
+    '\n' +
+    'HTML reste responsable de la structure.\n' +
+    '\n' +
+    'CSS reste responsable de la présentation.\n' +
+    '\n' +
+    'JavaScript permet de construire des interactions complexes.\n' +
+    '\n' +
+    'Les frameworks facilitent l\'organisation des applications.\n' +
+    '\n' +
+    'Les bases de données permettent de conserver les informations.\n' +
+    '\n' +
+    'Enfin, les performances, l\'accessibilité, la sécurité et le\n' +
+    'référencement doivent être considérés comme des éléments importants du\n' +
+    'développement d\'un produit web.\n' +
+    '\n' +
+    'Pour continuer votre apprentissage, consultez notre [guide du\n' +
+    'frontend](/guides/frontend), notre [guide du backend](/guides/backend)\n' +
+    'ou [MDN Web Docs](https://developer.mozilla.org/).\n', {
+    registerDefaultPlugins: false,
+    plugins: [
+        seo({language: 'fra'}),
+    ]
+});
+
+console.log(tree.meta.seo)

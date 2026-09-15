@@ -1,0 +1,53 @@
+{
+  "name": "comark-seo",
+  "version": "0.1.0",
+  "description": "Comark plugin that analyses Markdown for SEO",
+  "license": "MIT",
+  "author": "Corentin NELHOMME <contact@karibsen.fr>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d3ller/comark-seo.git"
+  },
+  "keywords": [
+    "comark",
+    "markdown",
+    "plugin",
+    "seo"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.18.0",
+  "scripts": {
+    "build": "tsdown",
+    "build:watch": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "play": "tsx playground/text.ts",
+    "prepublishOnly": "pnpm run typecheck && pnpm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "comark": ">=0.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.5.1",
+    "comark": "^0.7.0",
+    "tsdown": "^0.23.0",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
