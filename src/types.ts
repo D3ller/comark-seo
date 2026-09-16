@@ -44,7 +44,7 @@ export type ContentAnalytics = {
      * @type number
      * @example 5
      * */
-    readingTime: number | null;
+    readingTime: number;
 };
 
 export type LinksAnalytics = {

@@ -48,7 +48,7 @@ const seo = (TreeNode: Node[], options: ComarkSeoOptions = {}): Analytics => {
     const analytics: Analytics = {
         content: {
             words: 0,
-            readingTime: null,
+            readingTime: 0,
             repeatedWords: new Map<string, number>([])
         },
         links: {
@@ -94,7 +94,7 @@ const seo = (TreeNode: Node[], options: ComarkSeoOptions = {}): Analytics => {
         createIssue({reason: "multiple-h1", count: analytics.headings.h1Count}, analytics)
     }
 
-    analytics.content.readingTime = Math.round(analytics.content.words / readingSpeed);
+    analytics.content.readingTime = Math.max(1, Math.round(analytics.content.words / readingSpeed));
 
     return analytics
 }
