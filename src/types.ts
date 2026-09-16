@@ -69,6 +69,9 @@ export type ImagesAnalytics = {
  */
 export type Issue =
     | {
+    reason: "missing-heading-one"
+}
+    | {
     reason: "heading-hierarchy";
     from: string;
     to: string;
@@ -92,6 +95,11 @@ export type Issue =
     reason: "missing-dimensions",
     src: string,
     missing: "height" | "width" | "both"
+}
+| {
+    reason: "heading-too-long",
+    from: string
+    text: string
 }
 | {
     reason: "missing-url",

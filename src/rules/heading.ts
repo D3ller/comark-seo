@@ -1,11 +1,22 @@
 import { Analytics } from "../types.js";
 import { createIssue } from "../utils/issue.js";
+import type { Node } from "comark";
+import { flatten } from "../utils/flatten.js";
 
-export const headingRule = (previousHeading: {value: string}, currentHeading: string, analytics: Analytics) => {
+export const headingRule = (previousHeading: { value: string }, node: Node, analytics: Analytics) => {
+
+    let currentHeading = node[0] as string;
+
+    const text = flatten(node).trim()
+    if (text.length > 60) {
+        createIssue({ reason: "heading-too-long", from: currentHeading, text }, analytics)
+    }
+
     if (currentHeading === "h1") {
         analytics.headings.h1Count++;
     }
     analytics.headings.count++;
+
     if (previousHeading.value) {
         isHierarchyValid(previousHeading.value, currentHeading, analytics)
     }

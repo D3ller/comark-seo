@@ -26,7 +26,7 @@ const browse = (node: Node, analytics: Analytics, previousHeading: { value: stri
     if (typeof node === "string") return;
 
     if (headingType.has(node[0]!)) {
-        headingRule(previousHeading, node[0]!, analytics)
+        headingRule(previousHeading, node, analytics)
     }
     if (node[0] === "a") {
         linkRule(node, analytics);
@@ -85,6 +85,10 @@ const seo = (TreeNode: Node[], options: ComarkSeoOptions = {}): Analytics => {
     TreeNode.forEach((event) => {
         browse(event, analytics, previousHeading, stoppingWords);
     })
+
+    if(analytics.headings.h1Count === 0) {
+        createIssue({reason: "missing-heading-one"}, analytics);
+    }
 
     if (analytics.headings.h1Count > 1) {
         createIssue({reason: "multiple-h1", count: analytics.headings.h1Count}, analytics)
