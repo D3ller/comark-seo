@@ -1,6 +1,6 @@
 {
   "name": "comark-seo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Comark plugin that analyses Markdown for SEO",
   "license": "MIT",
   "author": "Corentin NELHOMME <contact@karibsen.fr>",
