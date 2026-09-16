@@ -9,6 +9,7 @@ import {
     ComarkSeoMeta,
     ComarkSeoOptions,
     Issue,
+    RepeatedWord,
 } from "./types.js";
 import type { ImageNode } from "./types.js";
 import { frenchStopWords, englishStopWords } from "./constants.js";
@@ -21,7 +22,7 @@ import { contentRule } from "./rules/content.js";
 
 const headingType = new Set(['h1', 'h2', "h3", 'h4', 'h5', 'h6']);
 
-const browse = (node: Node, analytics: Analytics, previousHeading: { value: string }, stoppingWords: Set<string>) => {
+const browse = (node: Node, analytics: Analytics, previousHeading: { value: string }, stoppingWords: Set<string>, wordCounts: Map<string, number>) => {
 
     if (typeof node === "string") return;
 
@@ -35,7 +36,7 @@ const browse = (node: Node, analytics: Analytics, previousHeading: { value: stri
         imageRule(node as ImageNode, analytics);
     }
 
-    contentRule(analytics, node, stoppingWords, previousHeading, browse);
+    contentRule(analytics, node, stoppingWords, previousHeading, wordCounts, browse);
 }
 
 
@@ -49,7 +50,7 @@ const seo = (TreeNode: Node[], options: ComarkSeoOptions = {}): Analytics => {
         content: {
             words: 0,
             readingTime: 0,
-            repeatedWords: new Map<string, number>([])
+            repeatedWords: []
         },
         links: {
             count: 0,
@@ -74,6 +75,7 @@ const seo = (TreeNode: Node[], options: ComarkSeoOptions = {}): Analytics => {
         issues: []
     }
 
+    const wordCounts = new Map<string, number>();
     let stoppingWords: Set<string> = new Set<string>();
     const previousHeading = {value: ""};
     const lang = options.language;
@@ -83,7 +85,7 @@ const seo = (TreeNode: Node[], options: ComarkSeoOptions = {}): Analytics => {
     }
 
     TreeNode.forEach((event) => {
-        browse(event, analytics, previousHeading, stoppingWords);
+        browse(event, analytics, previousHeading, stoppingWords, wordCounts);
     })
 
     if(analytics.headings.h1Count === 0) {
@@ -95,6 +97,10 @@ const seo = (TreeNode: Node[], options: ComarkSeoOptions = {}): Analytics => {
     }
 
     analytics.content.readingTime = Math.max(1, Math.round(analytics.content.words / readingSpeed));
+    analytics.content.repeatedWords = [...wordCounts]
+        .filter(([, count]) => count > 1)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .map(([word, count]) => ({word, count}))
 
     return analytics
 }
@@ -116,4 +122,4 @@ const plugin: ComarkPluginFactory<ComarkSeoOptions, ComarkSeoMeta> = defineComar
 })
 
 export default plugin;
-export type { Analytics, Issue, HeadingAnalytics, ContentAnalytics, LinksAnalytics, ImagesAnalytics };
+export type { Analytics, Issue, HeadingAnalytics, ContentAnalytics, LinksAnalytics, ImagesAnalytics, RepeatedWord };

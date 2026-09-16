@@ -35,10 +35,18 @@ export type HeadingAnalytics = {
     hierarchyValid: boolean
 };
 
+/** A word kept in `repeatedWords`, with the number of times it appears. */
+export type RepeatedWord = {
+    word: string;
+    count: number;
+};
+
 export type ContentAnalytics = {
     words: number;
 
-    repeatedWords: Map<string, number>;
+    /** Words appearing more than once, sorted by descending count then alphabetically.
+     * Stop words are excluded when `language` is set. */
+    repeatedWords: RepeatedWord[];
 
     /** How many time your document take min to be read
      * @type number
