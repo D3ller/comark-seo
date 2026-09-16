@@ -55,6 +55,11 @@ const seo = (TreeNode: Node[], options: ComarkSeoOptions = {}): Analytics => {
             count: 0,
             internal: 0,
             external: 0,
+            special: {
+                anchor: 0,
+                emails: 0,
+                phone: 0
+            },
             invalid: 0
         },
         images: {

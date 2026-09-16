@@ -51,6 +51,11 @@ export type LinksAnalytics = {
     count: number;
     internal: number;
     external: number;
+    special: {
+        anchor: number;
+        emails: number;
+        phone: number;
+    }
     invalid: number;
 }
 
@@ -87,6 +92,10 @@ export type Issue =
     reason: "missing-dimensions",
     src: string,
     missing: "height" | "width" | "both"
+}
+| {
+    reason: "missing-url",
+    text?: string
 }
 
 /** Element node whose attributes bag is narrowed to the keys a rule reads. */
