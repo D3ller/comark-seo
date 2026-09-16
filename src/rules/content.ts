@@ -10,7 +10,7 @@ export const contentRule = (analytics: Analytics, node: Node, stoppingWords: Set
         if (Array.isArray(child)) {
             browse(child, analytics, previousHeading, stoppingWords)
         } else if (typeof child === "string") {
-            const words = child.split(/[ .:;?!~,`"&|()<>{}\[\]\r\n/\\]+/).filter((w) => w !== '')
+            const words = child.split(/[ .:;?!~,`"&|()—<>{}\[\]\r\n/\\]+/).filter((w) => w !== '')
             analytics.content.words += words.length
 
             words.forEach((word: string) => {
