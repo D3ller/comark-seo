@@ -1,4 +1,4 @@
-import { Analytics, ImageNode } from "../types.js";
+import { Analytics, ImageMissing, ImageNode } from "../types.js";
 import { createIssue } from "../utils/issue.js";
 
 export const imageRule = (node: ImageNode, analytics: Analytics) => {
@@ -7,7 +7,9 @@ export const imageRule = (node: ImageNode, analytics: Analytics) => {
         analytics.images.missingAlt++;
         createIssue({reason: "missing-alt", src: node[1].src}, analytics)
     }
-    if (!node[1].width || !node[1].height) {
-        createIssue({reason: "missing-dimensions", src: node[1].src, missing: "both"}, analytics)
+    const { width, height, src } = node[1]
+    if (!width || !height) {
+        const missing = !width && !height ? "both" : !width ? "width" : "height"
+        createIssue({ reason: "missing-dimensions", src, missing }, analytics)
     }
 }

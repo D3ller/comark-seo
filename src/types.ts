@@ -100,3 +100,7 @@ export type ImageNode = TypedElementNode<{
     width?: string | number;
     height?: string | number;
 }>;
+
+
+export type ImageMissing = "height" | "width" | "both"
+export type LinkType = "external" | "internal" | "anchor" | "emails" | "phone" | "invalid"
