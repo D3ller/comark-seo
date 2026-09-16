@@ -1,6 +1,9 @@
 import { Analytics } from "../types.js";
 import type { Node } from "comark";
 
+// We exclude this type of word bc it's polute the real word count
+const excludeWordCount = new Set<string>(['pre', 'code']);
+
 export const contentRule = (analytics: Analytics, node: Node, stoppingWords: Set<string>, previousHeading: {
     value: string
 }, browse: (node: Node, analytics: Analytics, previousHeading: { value: string }, stoppingWords: Set<string>) => void) => {
@@ -10,6 +13,7 @@ export const contentRule = (analytics: Analytics, node: Node, stoppingWords: Set
         if (Array.isArray(child)) {
             browse(child, analytics, previousHeading, stoppingWords)
         } else if (typeof child === "string") {
+            if (excludeWordCount.has(node[0] as string)) continue;
             const words = child.split(/[ .:;?!~,`"&|()—<>{}\[\]\r\n/\\]+/).filter((w) => w !== '')
             analytics.content.words += words.length
 
