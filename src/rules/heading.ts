@@ -6,7 +6,7 @@ export const headingRule = (previousHeading: {value: string}, currentHeading: st
         analytics.headings.h1Count++;
     }
     analytics.headings.count++;
-    if (previousHeading.value && analytics.headings.hierarchyValid) {
+    if (previousHeading.value) {
         isHierarchyValid(previousHeading.value, currentHeading, analytics)
     }
     previousHeading.value = currentHeading;
