@@ -1,6 +1,6 @@
 {
   "name": "comark-seo",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Comark plugin that analyses Markdown for SEO",
   "license": "MIT",
   "author": "Corentin NELHOMME <contact@karibsen.fr>",
@@ -38,16 +38,30 @@
     "typecheck": "tsc --noEmit",
     "play": "tsx playground/text.ts",
     "prepublishOnly": "pnpm run typecheck && pnpm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky"
   },
   "peerDependencies": {
     "comark": ">=0.4.0"
   },
   "devDependencies": {
+    "@karibsen/eslint-config": "^0.1.0",
     "@types/node": "^26.5.1",
     "comark": "^0.7.0",
+    "eslint": "^10.12.0",
+    "eslint-flat-config-utils": "^3.2.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.7.0",
+    "lint-staged": "^17.6.0",
     "tsdown": "^0.23.0",
     "tsx": "^4.23.13",
-    "typescript": "^7.0.2"
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.4"
+  },
+  "lint-staged": {
+    "*.{ts,js,mjs}": "eslint --fix"
   }
 }
