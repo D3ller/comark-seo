@@ -102,7 +102,7 @@ export type Issue
   | {
     reason: "missing-dimensions";
     src: string;
-    missing: "height" | "width" | "both";
+    missing: ImageMissing;
   }
   | {
     reason: "heading-too-long";
@@ -115,7 +115,7 @@ export type Issue
   };
 
 /** Element node whose attributes bag is narrowed to the keys a rule reads. */
-export type TypedElementNode<A> = [string, ElementNodeAttributes & A, ...Node[]];
+type TypedElementNode<A> = [string, ElementNodeAttributes & A, ...Node[]];
 
 export type LinkNode = TypedElementNode<{ href?: string }>;
 
@@ -126,5 +126,5 @@ export type ImageNode = TypedElementNode<{
   height?: string | number;
 }>;
 
-export type ImageMissing = "height" | "width" | "both";
+type ImageMissing = "height" | "width" | "both";
 export type LinkType = "external" | "internal" | "anchor" | "emails" | "phone" | "invalid";
