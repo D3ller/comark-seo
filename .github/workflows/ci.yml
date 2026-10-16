@@ -2,21 +2,66 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
-    branches: [main]
+    branches: [main, develop]
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
+      - run: pnpm knip
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # vitest and tsdown need Node >= 22.12, Node 20 is covered by the smoke job below.
+        node: [22, 24, 26]
+        # Lowest comark accepted by peerDependencies, and the latest release.
+        comark: ["0.7.0", "latest"]
+    name: test (node ${{ matrix.node }}, comark ${{ matrix.comark }})
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm add -D comark@${{ matrix.comark }}
       - run: pnpm typecheck
       - run: pnpm test
+      - run: pnpm build
+
+  smoke-node-20:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run the built plugin on Node 20
+        run: |
+          node --input-type=module -e "
+            import { parseMarkdown } from 'comark';
+            import seo from './dist/index.mjs';
+            const tree = await parseMarkdown('# Title\n\nHello world', { plugins: [seo()] });
+            if (tree.meta.seo.content.words !== 3) throw new Error('unexpected result: ' + JSON.stringify(tree.meta.seo));
+          "

@@ -8,7 +8,7 @@ Comark plugin that analyses Markdown for SEO: headings, links, images, word coun
 pnpm add comark-seo
 ```
 
-Requires `comark` >= 0.4 as a peer dependency.
+Requires `comark` >= 0.7 as a peer dependency.
 
 ## Usage
 

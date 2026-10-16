@@ -42,10 +42,11 @@
     "test:watch": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "knip": "knip",
     "prepare": "husky"
   },
   "peerDependencies": {
-    "comark": ">=0.4.0"
+    "comark": ">=0.7.0"
   },
   "devDependencies": {
     "@karibsen/eslint-config": "^0.1.0",
@@ -55,6 +56,7 @@
     "eslint-flat-config-utils": "^3.2.0",
     "husky": "^9.1.7",
     "jiti": "^2.7.0",
+    "knip": "^6.41.0",
     "lint-staged": "^17.6.0",
     "tsdown": "^0.23.0",
     "tsx": "^4.23.13",
