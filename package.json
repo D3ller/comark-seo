@@ -46,7 +46,7 @@
     "prepare": "husky"
   },
   "peerDependencies": {
-    "comark": ">=0.4.0"
+    "comark": ">=0.7.0"
   },
   "devDependencies": {
     "@karibsen/eslint-config": "^0.1.0",
